@@ -6,17 +6,17 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import summer.health.application.health_app.services.PatientService;
 
-@RequestMapping("/patients")
+@RequestMapping("/api")
 @Controller
 public class PatientController {
 
     private final PatientService patientService;
 
-    public PatientController(@Qualifier("patientService")PatientService patientService) {
+    public PatientController(PatientService patientService) {
         this.patientService = patientService;
     }
 
-    @RequestMapping({"", "/", "/index", "index.html"})
+    @RequestMapping({"patient"})
     public String listPatients(Model model){
         model.addAttribute("patients", patientService.findAll());
         return "patients/index";

@@ -2,7 +2,9 @@ package summer.health.application.health_app.bootstrap;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+import summer.health.application.health_app.model.Doctor;
 import summer.health.application.health_app.model.Patient;
+import summer.health.application.health_app.services.DoctorService;
 import summer.health.application.health_app.services.PatientService;
 
 
@@ -10,9 +12,11 @@ import summer.health.application.health_app.services.PatientService;
 public class DataLoader implements CommandLineRunner {
 
     private final PatientService patientService;
+    private final DoctorService doctorService;
 
-    public DataLoader(PatientService patientService) {
+    public DataLoader(PatientService patientService, DoctorService doctorService) {
         this.patientService = patientService;
+        this.doctorService = doctorService;
     }
 
     @Override
@@ -22,6 +26,11 @@ public class DataLoader implements CommandLineRunner {
         System.out.println(patient.toString());
         patientService.save(patient);
         System.out.println(patientService.count());
+
+        Doctor doctor = new Doctor("Hannibal", "Lecter", "Psychiatrist");
+        System.out.println(doctor.toString());
+        doctorService.save(doctor);
+        System.out.println(doctorService.count());
 
     }
 }
