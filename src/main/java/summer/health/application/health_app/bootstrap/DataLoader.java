@@ -7,6 +7,8 @@ import summer.health.application.health_app.model.Patient;
 import summer.health.application.health_app.services.DoctorService;
 import summer.health.application.health_app.services.PatientService;
 
+import javax.annotation.PostConstruct;
+
 
 @Component
 public class DataLoader implements CommandLineRunner {
@@ -19,9 +21,8 @@ public class DataLoader implements CommandLineRunner {
         this.doctorService = doctorService;
     }
 
-    @Override
-    public void run(String... args) throws Exception {
-
+    @PostConstruct
+    private void postConstruct() {
         Patient patient = new Patient("Tomislav", "Živković", "Male", 31);
         System.out.println(patient.toString());
         patientService.save(patient);
@@ -31,6 +32,10 @@ public class DataLoader implements CommandLineRunner {
         System.out.println(doctor.toString());
         doctorService.save(doctor);
         System.out.println(doctorService.count());
+    }
+
+    @Override
+    public void run(String... args) throws Exception {
 
     }
 }
