@@ -16,20 +16,19 @@ import summer.health.application.health_app.model.Clinic;
 
 public class PropertyConfig {
 
-    @Value("${clinic.name}")
-    String clinicName;
+    String clinicName, clinicUrl, linkedIn, twitter, picture;
 
-    @Value("${clinic.web.url}")
-    String clinicUrl;
-
-    @Value("${clinic.url.linkedin}")
-    String linkedIn;
-
-    @Value("${clinic.url.twitter}")
-    String twitter;
-
-    @Value("${picture.url}")
-    String picture;
+    public PropertyConfig(@Value("${clinic.name}") String clinicName,
+                          @Value("${clinic.web.url}") String clinicUrl,
+                          @Value("${clinic.url.linkedin}") String linkedIn,
+                          @Value("${clinic.url.twitter}")String twitter,
+                          @Value("${picture.url}") String picture) {
+        this.clinicName = clinicName;
+        this.clinicUrl = clinicUrl;
+        this.linkedIn = linkedIn;
+        this.twitter = twitter;
+        this.picture = picture;
+    }
 
     @Bean
     public Clinic clinic(){
