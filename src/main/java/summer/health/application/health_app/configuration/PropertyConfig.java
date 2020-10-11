@@ -16,18 +16,17 @@ import summer.health.application.health_app.model.Clinic;
 
 public class PropertyConfig {
 
-    String clinicName, clinicUrl, linkedIn, twitter, picture;
+    // -Use the Value annotation on a method at parameter level to autowire arguments with property values
+    @Value("${clinic.url.linkedin}") String linkedIn;
+    @Value("${clinic.url.twitter}")String twitter;
+    @Value("${picture.url}") String picture;
 
+    // - Use the Value annotation to autowire at least two constructor arguments of a Bean with properties
+    String clinicName, clinicUrl;
     public PropertyConfig(@Value("${clinic.name}") String clinicName,
-                          @Value("${clinic.web.url}") String clinicUrl,
-                          @Value("${clinic.url.linkedin}") String linkedIn,
-                          @Value("${clinic.url.twitter}")String twitter,
-                          @Value("${picture.url}") String picture) {
+                          @Value("${clinic.web.url}") String clinicUrl) {
         this.clinicName = clinicName;
         this.clinicUrl = clinicUrl;
-        this.linkedIn = linkedIn;
-        this.twitter = twitter;
-        this.picture = picture;
     }
 
     @Bean
