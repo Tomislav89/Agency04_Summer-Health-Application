@@ -15,7 +15,7 @@ public class HealthAppApplication {
         System.out.println(i18nController.sayHello());
 
         Clinic clinic = (Clinic) ctx.getBean(Clinic.class);
-        System.out.println(clinic.getClinicName() + "" + "URL: " + clinic.getClinicUrl());
+        System.out.println(clinic.getClinicName() + "" + "URL: " + clinic.getClinicUrl() +"\n" +
+                "LinkedIn: " + clinic.getLinkedIn() + "\nTwitter: " + clinic.getTwitter() +"\nPicutre URL: " + clinic.getPicture());
     }
-
 }
