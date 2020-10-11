@@ -15,10 +15,14 @@ public class PropertyConfig {
     @Value("${clinic.name}")
     String clinicName;
 
+    @Value("${clinic.web.url}")
+    String clinicUrl;
+
     @Bean
     public Clinic clinic(){
         Clinic clinic = new Clinic();
         clinic.setClinicName(clinicName);
+        clinic.setClinicUrl(clinicUrl);
         return clinic;
     }
 
