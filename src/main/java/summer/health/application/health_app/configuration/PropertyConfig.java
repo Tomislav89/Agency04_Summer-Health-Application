@@ -7,11 +7,16 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.annotation.PropertySources;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import summer.health.application.health_app.model.Clinic;
+import summer.health.application.health_app.model.Disease;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Configuration
 @PropertySources({
         @PropertySource("classpath:application.properties"),
-        @PropertySource("classpath:sha.properties")
+        @PropertySource("classpath:sha.properties"),
+        @PropertySource("classpath:diseases.properties")
 })
 
 public class PropertyConfig {
@@ -20,6 +25,8 @@ public class PropertyConfig {
     @Value("${clinic.url.linkedin}") String linkedIn;
     @Value("${clinic.url.twitter}")String twitter;
     @Value("${picture.url}") String picture;
+
+    @Value("#{${listOfDiseases}}") List<String>listOfDiseases = new ArrayList();
 
     // - Use the Value annotation to autowire at least two constructor arguments of a Bean with properties
     String clinicName, clinicUrl;
@@ -38,6 +45,14 @@ public class PropertyConfig {
         clinic.setTwitter(twitter);
         clinic.setPicture(picture);
         return clinic;
+    }
+
+    // Use Java annotations to register a Spring Bean to the context called 'diseases'
+    @Bean
+    public Disease diseases(){
+        Disease disease = new Disease();
+        disease.getListOfDiseases().add(listOfDiseases);
+        return disease;
     }
 
     @Bean

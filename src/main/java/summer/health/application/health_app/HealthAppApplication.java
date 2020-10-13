@@ -5,6 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import summer.health.application.health_app.controllers.I18nController;
 import summer.health.application.health_app.model.Clinic;
+import summer.health.application.health_app.model.Disease;
 
 @SpringBootApplication
 public class HealthAppApplication {
@@ -17,5 +18,8 @@ public class HealthAppApplication {
         Clinic clinic = (Clinic) ctx.getBean(Clinic.class);
         System.out.println(clinic.getClinicName() + "\n" + "URL: " + clinic.getClinicUrl() +"\n" +
                 "LinkedIn: " + clinic.getLinkedIn() + "\nTwitter: " + clinic.getTwitter() +"\nPicutre URL: " + clinic.getPicture());
+
+        Disease disease = (Disease) ctx.getBean(Disease.class);
+        disease.listprintout();
     }
 }
