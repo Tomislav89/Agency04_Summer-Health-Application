@@ -8,6 +8,7 @@ import org.springframework.context.annotation.PropertySources;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import summer.health.application.health_app.model.Clinic;
 import summer.health.application.health_app.model.Disease;
+import summer.health.application.health_app.services.doctorJokesService.DoctorJokesServiceImplementation;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -63,6 +64,11 @@ public class PropertyConfig {
         return disease;
     }
 
+    @Bean
+    public List getDoctorsJokes(){
+        DoctorJokesServiceImplementation doctorJokesServiceImplementation = new DoctorJokesServiceImplementation();
+        return doctorJokesServiceImplementation.sayJoke();
+    }
 
     @Bean
     public static PropertySourcesPlaceholderConfigurer properties(){

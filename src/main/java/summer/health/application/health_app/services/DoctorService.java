@@ -5,4 +5,5 @@ import summer.health.application.health_app.model.Doctor;
 
 @Service
 public interface DoctorService extends CrudRepository<Doctor, Long> {
+
 }
