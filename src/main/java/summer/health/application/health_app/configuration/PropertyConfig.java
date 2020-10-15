@@ -1,15 +1,12 @@
 package summer.health.application.health_app.configuration;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
-import org.springframework.context.annotation.PropertySources;
+import org.springframework.context.annotation.*;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import summer.health.application.health_app.model.Clinic;
 import summer.health.application.health_app.model.Disease;
+import summer.health.application.health_app.model.Doctor;
 import summer.health.application.health_app.services.doctorJokesService.DoctorJokesServiceImplementation;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -68,6 +65,18 @@ public class PropertyConfig {
     public List getDoctorsJokes(){
         DoctorJokesServiceImplementation doctorJokesServiceImplementation = new DoctorJokesServiceImplementation();
         return doctorJokesServiceImplementation.sayJoke();
+    }
+
+    //Use the Primary annotation to give precedence to a Bean
+    @Bean
+    @Primary
+    public Doctor doctorPero(){
+        return new Doctor("Pero", "Perić" ,"Pedijatar");
+    }
+
+    @Bean
+    public Doctor doctorMarko(){
+        return new Doctor("Marko", "Marić" ,"Kirurg");
     }
 
     @Bean

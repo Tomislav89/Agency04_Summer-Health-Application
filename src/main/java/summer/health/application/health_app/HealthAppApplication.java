@@ -8,6 +8,7 @@ import summer.health.application.health_app.configuration.PropertyConfig;
 import summer.health.application.health_app.controllers.I18nController;
 import summer.health.application.health_app.model.Clinic;
 import summer.health.application.health_app.model.Disease;
+import summer.health.application.health_app.model.Doctor;
 import summer.health.application.health_app.model.Therapy;
 import summer.health.application.health_app.services.doctorJokesService.DoctorJokesServiceImplementation;
 
@@ -39,5 +40,11 @@ public class HealthAppApplication {
         for(int i = 0; i < propertyConfig.getDoctorsJokes().size(); i++) {
             System.out.println(i + 1 + ". " + propertyConfig.getDoctorsJokes().get(i).toString() +"\n");
         }
+
+        //Primary doctor
+        Doctor doctor = (Doctor) ctx.getBean(Doctor.class);
+        System.out.println(doctor);
+
+
     }
 }
