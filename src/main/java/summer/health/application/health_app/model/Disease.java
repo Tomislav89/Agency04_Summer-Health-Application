@@ -15,7 +15,7 @@ public class Disease {
         this.listOfDiseases = listOfDiseases;
     }
 
-    public void listprintout() {
+    public void listPrintout() {
         for(int i = 0; i < listOfDiseases.size(); i++) {
             System.out.println("List of diseases: " + listOfDiseases.toString());
         }

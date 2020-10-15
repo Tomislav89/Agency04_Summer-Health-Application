@@ -12,11 +12,16 @@ import summer.health.application.health_app.model.Disease;
 import java.util.ArrayList;
 import java.util.List;
 
+// Configuration classes can contain bean definition methods annotated with @Bean
+//@Bean methods may also be declared within classes that are not annotated with @Configuration. For example,
+// bean methods may be declared in a @Component class or even in a plain old class. In such cases, a @Bean method will get processed in a so-called 'lite' mode.
+
 @Configuration
 @PropertySources({
         @PropertySource("classpath:application.properties"),
         @PropertySource("classpath:sha.properties"),
-        @PropertySource("classpath:diseases.properties")
+        @PropertySource("classpath:diseases.properties"),
+
 })
 
 public class PropertyConfig {
@@ -36,6 +41,9 @@ public class PropertyConfig {
         this.clinicUrl = clinicUrl;
     }
 
+    //In Spring, the objects that form the backbone of your application and that are managed by the Spring IoC
+    //container are called beans. A bean is an object that is instantiated, assembled, and otherwise managed by a Spring IoC container.
+
     @Bean
     public Clinic clinic(){
         Clinic clinic = new Clinic();
@@ -54,6 +62,7 @@ public class PropertyConfig {
         disease.getListOfDiseases().add(listOfDiseases);
         return disease;
     }
+
 
     @Bean
     public static PropertySourcesPlaceholderConfigurer properties(){

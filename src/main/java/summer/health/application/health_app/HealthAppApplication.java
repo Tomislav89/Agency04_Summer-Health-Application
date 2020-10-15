@@ -3,11 +3,16 @@ package summer.health.application.health_app;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.ImportResource;
 import summer.health.application.health_app.controllers.I18nController;
 import summer.health.application.health_app.model.Clinic;
 import summer.health.application.health_app.model.Disease;
+import summer.health.application.health_app.model.Therapy;
+
+import javax.swing.text.StyledEditorKit;
 
 @SpringBootApplication
+@ImportResource("classpath:therapies.xml")
 public class HealthAppApplication {
 
     public static void main(String[] args) {
@@ -20,6 +25,10 @@ public class HealthAppApplication {
                 "LinkedIn: " + clinic.getLinkedIn() + "\nTwitter: " + clinic.getTwitter() +"\nPicutre URL: " + clinic.getPicture());
 
         Disease disease = (Disease) ctx.getBean(Disease.class);
-        disease.listprintout();
+        disease.listPrintout();
+
+        Therapy therapy = (Therapy) ctx.getBean(Therapy.class);
+        System.out.println(therapy.getListTherapy().toString());
+
     }
 }
