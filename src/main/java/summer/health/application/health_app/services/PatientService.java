@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 import summer.health.application.health_app.model.Patient;
 
 @Service
-public interface PatientService extends CrudRepository<Patient, Long> {
+public interface PatientService extends CrudService<Patient, Long> {
+    Patient findByLastName(String lastName);
 
 }

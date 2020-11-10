@@ -16,26 +16,26 @@ public class PatientController {
         this.patientService = patientService;
     }
 
-    //GET
-    @RequestMapping({"patient"})
+
+   /* @RequestMapping({"patient"})
     public String listPatients(Model model){
         model.addAttribute("patients", patientService.findAll());
         return "patients/index";
     }
 
-    //POST
+
     @PostMapping("newpatient")
     Patient newPatient(@RequestBody Patient newPatient) {
         return patientService.save(newPatient);
     }
 
-    //DELETE
+
     @DeleteMapping("/patients/{id}")
     void deletePatient(@PathVariable Long id) {
         patientService.deleteById(id);
     }
 
-    //PUT
+
     @PutMapping("/employees/{id}")
     Patient replaceEmployee(@RequestBody Patient newPatient, @PathVariable Long id) {
 
@@ -49,7 +49,6 @@ public class PatientController {
                     newPatient.setId(id);
                     return patientService.save(newPatient);
                 });
-    }
-
+    }*/
 
 }

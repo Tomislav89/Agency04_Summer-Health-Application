@@ -13,6 +13,7 @@ import java.util.Set;
 @EqualsAndHashCode
 @Builder
 @Table(name = "doctor")
+
 @Entity
 public class Doctor {
 
