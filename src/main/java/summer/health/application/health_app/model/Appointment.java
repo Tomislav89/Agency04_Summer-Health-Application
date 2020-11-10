@@ -43,4 +43,5 @@ public class Appointment {
     public void setAppointmentDate(Date appointmentDate) {
         this.appointmentDate = appointmentDate;
     }
+
 }
