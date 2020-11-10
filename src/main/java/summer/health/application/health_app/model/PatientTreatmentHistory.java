@@ -1,8 +1,18 @@
 package summer.health.application.health_app.model;
 
+import lombok.*;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode
+@Builder
+@Table(name = "patient_treatment_history")
 
 @Entity
 public class PatientTreatmentHistory {
@@ -11,39 +21,13 @@ public class PatientTreatmentHistory {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "patientTreatmentHistory", fetch = FetchType.LAZY)
     private Set<Patient> patientTreatmentHistories = new HashSet<>();
 
-  //  private Patient patient;
-  //  private Doctor doctor;
-
+    @Column(name = "treatment_remark")
     private String treatmentRemark;
+    @Column(name = "old_status")
     private Status oldStatus;
+    @Column(name = "new_status")
     private Status newStatus;
-
-
-    public String getTreatmentRemark() {
-        return treatmentRemark;
-    }
-
-    public void setTreatmentRemark(String treatmentRemark) {
-        this.treatmentRemark = treatmentRemark;
-    }
-
-    public Status getOldStatus() {
-        return oldStatus;
-    }
-
-    public void setOldStatus(Status oldStatus) {
-        this.oldStatus = oldStatus;
-    }
-
-    public Status getNewStatus() {
-        return newStatus;
-    }
-
-    public void setNewStatus(Status newStatus) {
-        this.newStatus = newStatus;
-    }
 }

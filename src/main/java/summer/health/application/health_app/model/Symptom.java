@@ -1,6 +1,16 @@
 package summer.health.application.health_app.model;
 
+import lombok.*;
+
 import javax.persistence.*;
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode
+@Builder
+@Table(name = "symptom")
 
 @Entity
 public class Symptom {
@@ -10,15 +20,9 @@ public class Symptom {
     private Long id;
 
     @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "patient_medical_record_id")
     PatientMedicalRecord patientMedicalRecord;
 
+    @Column(name = "description")
     private String description;
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
 }
