@@ -1,28 +1,28 @@
 package summer.health.application.health_app.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import java.util.ArrayList;
-import java.util.List;
+import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 public class Doctor {
-
-    private String name;
-    private String lastName;
-    private String speciality;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    public Doctor(String name, String lastName, String speciality) {
+    private String name;
+    private String lastName;
+    private DoctorExpertise doctorExpertise;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "doctor", fetch = FetchType.LAZY)
+    private Set<Appointment> appointments = new HashSet<>();
+
+    public Doctor(String name, String lastName, DoctorExpertise doctorExpertise) {
         this.name = name;
         this.lastName = lastName;
-        this.speciality = speciality;
+        this.doctorExpertise = doctorExpertise;
     }
 
     public Doctor() {
@@ -31,6 +31,10 @@ public class Doctor {
 
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -49,12 +53,12 @@ public class Doctor {
         this.lastName = lastName;
     }
 
-    public String getSpeciality() {
-        return speciality;
+    public DoctorExpertise getDoctorExpertise() {
+        return doctorExpertise;
     }
 
-    public void setSpeciality(String speciality) {
-        this.speciality = speciality;
+    public void setDoctorExpertise(DoctorExpertise doctorExpertise) {
+        this.doctorExpertise = doctorExpertise;
     }
 
     @Override
@@ -62,22 +66,14 @@ public class Doctor {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Doctor doctor = (Doctor) o;
-        return Objects.equals(name, doctor.name) &&
+        return Objects.equals(id, doctor.id) &&
+                Objects.equals(name, doctor.name) &&
                 Objects.equals(lastName, doctor.lastName) &&
-                Objects.equals(speciality, doctor.speciality);
+                doctorExpertise == doctor.doctorExpertise;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, lastName, speciality);
-    }
-
-    @Override
-    public String toString() {
-        return "Doctor{" +
-                "name='" + name + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", speciality='" + speciality + '\'' +
-                '}';
+        return Objects.hash(id, name, lastName, doctorExpertise);
     }
 }

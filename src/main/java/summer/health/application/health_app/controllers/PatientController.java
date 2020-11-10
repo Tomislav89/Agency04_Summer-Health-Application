@@ -41,7 +41,7 @@ public class PatientController {
 
         return patientService.findById(id)
                 .map(patient -> {
-                    patient.setName(newPatient.getName());
+                    patient.setFirstName(newPatient.getFirstName());
                     patient.setLastName(newPatient.getLastName());
                     return patientService.save(patient);
                 })
