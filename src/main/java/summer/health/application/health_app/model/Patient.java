@@ -61,5 +61,6 @@ public class Patient extends Person{
         this.gender = gender;
         this.enlistmentDate = enlistmentDate;
         this.status = status;
+
     }
 }
