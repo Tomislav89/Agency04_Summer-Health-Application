@@ -16,7 +16,7 @@ import java.util.Set;
 @Table(name = "patient")
 
 @Entity
-public class Patient {
+public class Patient extends Person{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -33,10 +33,6 @@ public class Patient {
     @JoinColumn(name = "patientMedicalRecord_id")
     PatientMedicalRecord patientMedicalRecord;
 
-    @Column(name = "first_Name")
-    private String firstName;
-    @Column(name = "last_Name")
-    private String lastName;
     @Column(name = "email")
     private String email;
     @Column(name = "age")
@@ -49,4 +45,21 @@ public class Patient {
     private Date enlistmentDate;
     @Column(name = "status")
     private Status status;
+
+    @Builder
+    public Patient(String firstName, String lastName, Long id, Set<Appointment> appointments,
+                   PatientTreatmentHistory patientTreatmentHistory, PatientMedicalRecord patientMedicalRecord,
+                   String email, Integer age, String phoneNumber, Gender gender, Date enlistmentDate, Status status) {
+        super(firstName, lastName);
+        this.id = id;
+        this.appointments = appointments;
+        this.patientTreatmentHistory = patientTreatmentHistory;
+        this.patientMedicalRecord = patientMedicalRecord;
+        this.email = email;
+        this.age = age;
+        this.phoneNumber = phoneNumber;
+        this.gender = gender;
+        this.enlistmentDate = enlistmentDate;
+        this.status = status;
+    }
 }

@@ -15,19 +15,25 @@ import java.util.Set;
 @Table(name = "doctor")
 
 @Entity
-public class Doctor {
+public class Doctor extends Person {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "first_name")
-    private String firstName;
-    @Column(name = "laste_name")
-    private String lastName;
     @JoinColumn(name = "doctor_expertise_id")
     private DoctorExpertise doctorExpertise;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "doctor", fetch = FetchType.LAZY)
     private Set<Appointment> appointments = new HashSet<>();
+
+    @Builder
+    public Doctor(String firstName, String lastName, Long id, DoctorExpertise doctorExpertise, Set<Appointment> appointments) {
+        super(firstName, lastName);
+        this.id = id;
+        this.doctorExpertise = doctorExpertise;
+        this.appointments = appointments;
+    }
+
+
 }
